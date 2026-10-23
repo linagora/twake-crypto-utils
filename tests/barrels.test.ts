@@ -22,6 +22,7 @@ const ISO_EXPORTS = [
   'generateRandomToken',
   'generateRandomString',
   'validatePasswordComplexity',
+  'validateCnilPasswordComplexity',
   'decodeJwtPayload',
   'getJwtStringProperty',
   'arrayBufferToBase64',

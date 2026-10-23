@@ -35,7 +35,7 @@ export { createSha256Hash, timingSafeStringEqual } from './sha256.js';
 export { generateRandomToken, generateRandomString } from './random.js';
 
 // Password
-export { validatePasswordComplexity } from './password.js';
+export { validateCnilPasswordComplexity, validatePasswordComplexity } from './password.js';
 
 // JWT (decode-only, unsafe)
 export { decodeJwtPayload, getJwtStringProperty, type JwtPayload } from './jwt.js';

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { validatePasswordComplexity } from '../src/password.js';
+import { validateCnilPasswordComplexity, validatePasswordComplexity } from '../src/password.js';
 
 describe('validatePasswordComplexity', () => {
   it.each([
@@ -28,5 +28,25 @@ describe('validatePasswordComplexity', () => {
   it('rejects unicode digits / letters (ASCII-only by design)', () => {
     expect(validatePasswordComplexity('Pässwörd1')).toBe(true);
     expect(validatePasswordComplexity('ＡＢＣabc１２３')).toBe(false);
+  });
+});
+
+describe('validateCnilPasswordComplexity', () => {
+  it.each([
+    ['Abcdefgh12!?', true], // 12 chars, all four classes
+    ['Abcdefghij1234', true], // 14 chars, no special
+    ['Abcdefgh1!?', false], // 11 chars with special
+    ['Abcdefghij123', false], // 13 chars, no special
+    ['abcdefghij12!?', false], // no uppercase
+    ['ABCDEFGHIJ12!?', false], // no lowercase
+    ['Abcdefghijkl!?', false], // no digit
+    ['Password1', false], // passes the default rule only
+    ['', false],
+  ])('validates %j as %s', (input, expected) => {
+    expect(validateCnilPasswordComplexity(input)).toBe(expected);
+  });
+
+  it('counts any non-ASCII-alphanumeric character as special', () => {
+    expect(validateCnilPasswordComplexity('Abcdefgh12 é')).toBe(true);
   });
 });
