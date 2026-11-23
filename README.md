@@ -1,5 +1,7 @@
 # @linagora/twake-crypto-utils
 
+> This package moved to [linagora/twake-libs](https://github.com/linagora/twake-libs/tree/main/packages/twake-crypto-utils). Versions from 1.0.0 are released from there, and this repository is no longer updated.
+
 Cryptography helpers built on the Web Crypto API. Runs in Node, Bun, Deno, and browsers without polyfills or third-party dependencies.
 
 ## Install
